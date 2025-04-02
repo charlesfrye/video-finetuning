@@ -121,7 +121,6 @@ def load_model(base_model, to_cuda=True):
     import torch
     from diffusers import AutoencoderKLWan, WanPipeline
 
-    # TODO: speed up inference
     vae = AutoencoderKLWan.from_pretrained(
         base_model, subfolder="vae", torch_dtype=torch.float32
     )
