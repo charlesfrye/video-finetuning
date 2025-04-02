@@ -18,28 +18,26 @@ wan_image = (
 
 jupyter_image = (
     wan_image.pip_install("jupyter")
-    .add_local_file("training.ipynb", "/root/training.ipynb")
+    .add_local_file("notebooks/training.ipynb", "/root/training.ipynb")
     .add_local_file(
-        "train_lora_wan21_1b.yaml", "/root/ai-toolkit/config/train_cfg.yaml"
+        "config/train_lora_wan21_1b.yaml", "/root/ai-toolkit/config/train_cfg.yaml"
     )
     .add_local_dir("data", "/root/ai-toolkit/data")
 )
 
 app = modal.App("finetune-video-train", image=jupyter_image)
 
-data_volume = modal.Volume.from_name("finetune-video", create_if_missing=True)
+data_volume = modal.Volume.from_name("finetune-video-data", create_if_missing=True)
 finetunes_volume = modal.Volume.from_name(
     "finetune-video-models", create_if_missing=True
 )
 hf_cache_vol = modal.Volume.from_name("huggingface-cache", create_if_missing=True)
 
-JUPYTER_TOKEN = "1234"  # Change me to something non-guessable!
-
 
 @app.function(
     max_containers=1,
     volumes={
-        "/root/data": data_volume,
+        "/root/remote-data": data_volume,
         "/root/.cache/huggingface": hf_cache_vol,
         "/root/outputs": finetunes_volume,
     },
@@ -59,8 +57,10 @@ def run_jupyter(timeout: int):
                 f"--port={jupyter_port}",
                 "--NotebookApp.allow_origin='*'",
                 "--NotebookApp.allow_remote_access=1",
+                "--NotebookApp.token=''",
+                "--NotebookApp.password=''",
             ],
-            env={**os.environ, "JUPYTER_TOKEN": JUPYTER_TOKEN},
+            env=os.environ,
         )
 
         print(f"Jupyter available at => {tunnel.url}")
@@ -77,5 +77,5 @@ def run_jupyter(timeout: int):
 
 
 @app.local_entrypoint()
-def main(timeout: int = 10_000):
+def main(timeout: int = 15_000):
     run_jupyter.remote(timeout=timeout)
