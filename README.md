@@ -43,11 +43,14 @@ and set up authentication.
 Create a folder inside `data/`, parallel to the sample data, `data/sample`.
 You can name it whatever you want.
 
-Place at least four images of yourself in that folder.
-Images should be in `.png` or `.jpg` format.
-We recommend putting a variety of images,
+Place at least four images of yourself in that folder --
+ideally eight or more.
+Images should be in `.png` or `.jpg` format
+and around 400 to 800 pixels on each side.
+For best results, we recommend putting a variety of images,
 in particular where you are wearing different clothes and making different faces,
 and including some images that have other people in them.
+But you can also just take a few photos of yourself right now!
 
 Optionally, add captions in `.txt` files in that same folder.
 They should look something like
