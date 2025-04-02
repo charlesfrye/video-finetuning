@@ -32,10 +32,10 @@ run `pip install modal`.
 
 If you run into trouble with Python environments,
 we suggest using
-[this Google Colab notebook](https://colab.research.google.com/drive/1UZV1FRkDiWxldDl5Qud4xpJFFt8CbJ6l?usp=sharing),
+[this Google Colab notebook](https://colab.research.google.com/github/charlesfrye/video-finetuning/blob/main/notebooks/self_contained.ipynb),
 where we've set the environment up for you.
-The cell outputs are a bit messy, but the Python setup works
-and running the notebook in Colab is free!
+It's a bit of work to get used to running terminal commands in a notebook
+if you haven't done that before, but the Python setup works and running the notebook in Colab is free!
 All you need is a Google account.
 
 Then, if you've never used Modal on the computer you're using,
