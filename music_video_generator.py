@@ -1,3 +1,4 @@
+import random
 from pathlib import Path
 
 import modal
@@ -34,13 +35,11 @@ def main(finetune_id, mp3_file=None, prompt_file=None):
 
     n_clips = (total_duration // clip_duration) + (total_duration % clip_duration != 0)
 
-    assert n_clips <= len(prompts), (
-        "not enough prompts for song of length {total_duration}s"
-    )
-
     # generate video clips
-    prompts = prompts[:n_clips]
-    print(f"generating {n_clips} clip(s) of duration {clip_duration}s")
+    prompts = random.choices(prompts, k=n_clips)
+    print(
+        f"generating {n_clips} clip{'s' if n_clips > 1 else ''} of duration {clip_duration}s"
+    )
     videos_bytes = list(
         generator.run.map(
             prompts, kwargs={"num_frames": 15 * clip_duration}, order_outputs=False
