@@ -1,2 +1,6 @@
 __pycache__
 todo.txt
+
+samples/
+
+.DS_Store

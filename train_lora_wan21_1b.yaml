@@ -1,0 +1,63 @@
+config:
+  name: my_first_wan21_1b_lora_v1
+  process:
+  - datasets:
+    - cache_latents_to_disk: true
+      caption_dropout_rate: 0.05
+      caption_ext: txt
+      folder_path: /root/data
+      resolution:
+      - 632
+      shuffle_tokens: false
+    device: cuda:0
+    model:
+      arch: wan21
+      name_or_path: Wan-AI/Wan2.1-T2V-1.3B-Diffusers
+      quantize_te: true
+    network:
+      linear: 32
+      linear_alpha: 32
+      type: lora
+    sample:
+      fps: 15
+      guidance_scale: 5
+      height: 480
+      neg: ''
+      num_frames: 40
+      prompts:
+      - '[trigger] reveals a sign that says ''I LOVE MODAL!'''
+      sample_every: 250
+      sample_steps: 30
+      sampler: flowmatch
+      seed: 42
+      walk_seed: true
+      width: 832
+    save:
+      dtype: float16
+      max_step_saves_to_keep: 40
+      push_to_hub: false
+      save_every: 100
+    train:
+      batch_size: 1
+      dtype: bf16
+      ema_config:
+        ema_decay: 0.99
+        use_ema: true
+      gradient_accumulation: 1
+      gradient_checkpointing: true
+      lr: 1e-4
+      noise_scheduler: flowmatch
+      optimizer: adamw8bit
+      optimizer_params:
+        weight_decay: 1e-4
+      steps: 1000
+      timestep_type: sigmoid
+      train_text_encoder: false
+      train_unet: true
+    training_folder: "/root/outputs"
+    trigger_word: p3r5on
+    type: sd_trainer
+job: extension
+meta:
+  name: '[name]'
+  version: '1.0'
