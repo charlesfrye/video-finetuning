@@ -4,3 +4,5 @@ todo.txt
 samples/
 
 .DS_Store
+
+.venv
