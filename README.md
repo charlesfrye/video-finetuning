@@ -7,7 +7,8 @@ you don't get to star in them.
 
 Until now!
 
-This repo includes all the code you need to deploy a custom
+[The repo](https://github.com/modal-labs/music-video-gen)
+includes all the code you need to deploy a custom
 music video generator on [Modal](https://modal.com),
 a serverless infrastructure platform for data, ML, and AI applications.
 
@@ -28,7 +29,7 @@ run `pip install modal`.
 
 If you run into trouble with Python environments,
 we suggest using
-[this Google Colab notebook](https://colab.research.google.com/github/charlesfrye/video-finetuning/blob/main/notebooks/self_contained.ipynb),
+[this Google Colab notebook](https://colab.research.google.com/github/modal-labs/music-video-gen/blob/main/notebooks/self_contained.ipynb),
 where we've set the environment up for you.
 It's a bit of work to get used to running terminal commands in a notebook
 if you haven't done that before, but the Python setup works and running the notebook in Colab is free!
